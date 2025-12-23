@@ -54,7 +54,7 @@ export default function FetchClient() {
         cache: "no-store",
       });
       const json = await res.json();
-      console.log(json.data);
+      // console.log(json.data);
 
       setBaseData(json.data);
     })();

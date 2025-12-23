@@ -1,4 +1,4 @@
-import DropOptionArrow from "@/app/Components/Icons/DropOptionArrow";
+import DropOptionArrow from "@/Components/Icons/DropOptionArrow";
 import Link from "next/link";
 
 export default function MobileDropdownCell({ title, links }) {

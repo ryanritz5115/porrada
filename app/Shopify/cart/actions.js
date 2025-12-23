@@ -64,6 +64,15 @@ export async function getMicroCartAction() {
   const cookieStore = await cookies();
   const cartId = cookieStore.get("cartId")?.value;
 
+  if (!cartId) {
+    return {
+      id: null,
+      totalQuantity: 0,
+      subtotal: 0,
+      subtotalFormatted: "$0.00",
+    };
+  }
+
   const cart = await getMicroCart(cartId);
   return cart;
 }

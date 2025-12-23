@@ -2,7 +2,7 @@ import Link from "next/link";
 import MobileNav from "./MobileNav";
 import Image from "next/image";
 import React from "react";
-import CartIcon from "@/app/Components/Icons/CartIcon";
+import CartIcon from "@/Components/Icons/CartIcon";
 import CartButton from "./CartButton";
 import LoginButton from "./LoginButton";
 

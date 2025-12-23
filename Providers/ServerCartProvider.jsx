@@ -10,7 +10,7 @@ export default async function ServerCartProvider({
   const cart = await getMicroCartAction(); // runs on the server
 
   return (
-    <CartProvider initialCart={cart} initialCartId={cart.id}>
+    <CartProvider initialCart={cart} initialCartId={cart?.id || ""}>
       {children}
     </CartProvider>
   );

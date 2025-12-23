@@ -1,5 +1,5 @@
 import ServerCartProvider from "@/Providers/ServerCartProvider";
-import Header from "@/app/Components/Global/Header/Header";
+import Header from "@/Components/Global/Header/Header";
 import { Inter } from "next/font/google";
 
 const inter = Inter({

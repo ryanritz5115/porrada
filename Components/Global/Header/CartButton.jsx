@@ -1,5 +1,5 @@
 "use client";
-import CartIcon from "@/app/Components/Icons/CartIcon";
+import CartIcon from "@/Components/Icons/CartIcon";
 import { useCart } from "@/Providers/CartProvider";
 
 export default function CartButton() {

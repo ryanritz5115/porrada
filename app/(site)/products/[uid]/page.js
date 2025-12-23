@@ -1,6 +1,6 @@
-import DummyAddToCart from "@/app/Components/Product/DummyAddToCart";
-import Product from "@/app/Components/Product/Product";
-import { getProductByHandle } from "@/lib/Shopify/product";
+import DummyAddToCart from "@/Components/Product/DummyAddToCart";
+import Product from "@/Components/Product/Product";
+import { getProductByHandle } from "../../../../lib/Shopify/product";
 
 export default async function page({ params }) {
   const { uid } = await params;

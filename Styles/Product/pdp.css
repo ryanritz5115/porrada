@@ -1,0 +1,402 @@
+.pdpCtn {
+  padding: var(--p);
+}
+
+.pdpDiv {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 auto;
+  max-width: var(--smax);
+}
+
+.pdpLeft {
+  position: sticky;
+  top: var(--headerHeight);
+  width: 55%;
+}
+.pdpFlex {
+  display: flex;
+  overflow: hidden;
+  flex-wrap: nowrap;
+  cursor: grab;
+  border-radius: var(--br);
+}
+
+.pdpRight {
+  width: 40%;
+}
+
+.pdpImageCtn {
+  position: relative;
+  width: 100%;
+  flex: 1 0 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.pdpImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.pdpImageCtn:first-child {
+  /* grid-area: a; */
+}
+.pdpTitle {
+  text-transform: uppercase;
+  margin: 20px 0 5px;
+  font-family: var(--noka);
+  font-weight: 400;
+}
+
+.pdpDisc {
+  font-size: 14px;
+  max-width: 400px;
+
+  margin: 0 0 20px;
+}
+
+.pdpTags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.sellingPlansCtn .eyebrow {
+  margin: 30px 0 20px;
+}
+.singleSellingPlanCtn {
+  padding: 20px;
+  border-radius: var(--br);
+  border: 1px solid #eee;
+  background: #fcfcfc;
+  position: relative;
+  transition: border 0.3s ease;
+}
+.singleSellingPlanDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.singleSellingPlanWrapper {
+  position: relative;
+}
+
+.sellingPlanLabel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.sellingPlanLabel ~ input {
+  display: none;
+}
+
+.sellingPlanTag {
+  position: absolute;
+  right: 20px;
+  top: -10px;
+  background: var(--gold);
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 4px;
+  outline: 4px solid white;
+  font-size: 12px;
+}
+
+.sellingPlanTitleCtn {
+  display: flex;
+  align-items: center;
+  gap: 0 20px;
+}
+#PlanWrap {
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.sellingPlanBubble {
+  position: relative;
+  border: 1px solid #eee;
+  width: 24px;
+  aspect-ratio: 1;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: border 0.3s ease;
+}
+
+.sellingPlanBubble::after {
+  position: absolute;
+  content: "";
+  width: 10px;
+  aspect-ratio: 1;
+  border-radius: 100px;
+  background: black;
+  transform: scale(0);
+  transition: transform 0.2s ease;
+}
+
+.sellingPlanTitle {
+  font-weight: 600;
+}
+
+.sellingPlaneSubtitle {
+  font-weight: 600;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--primary);
+}
+.sellingPlanSelectCtn {
+  position: relative;
+  width: fit-content;
+  margin-top: 20px;
+}
+.sellingPlanSelectCtn svg {
+  position: absolute;
+  top: 50%;
+  z-index: 13;
+  right: 10px;
+  transform: translateY(-50%);
+}
+.sellingPlanSelect {
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 5px 25px 5px 5px;
+  font-weight: 500;
+  position: relative;
+  z-index: 11;
+  appearance: none;
+  font-size: 14px;
+  background: white !important;
+}
+
+.sellingPlanSelect:focus {
+  outline: 1px solid var(--gold);
+}
+
+.sellingPlanRight {
+  text-align: right;
+}
+
+.sellingPlanDiscount {
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.sellingPlanOriginal {
+  font-weight: 600;
+  color: #767676;
+  line-height: 1;
+  /* margin-bottom: 5px; */
+}
+.singleSellingPlanWrapper input:checked ~ .singleSellingPlanCtn {
+  border: 1px solid black;
+}
+.singleSellingPlanWrapper
+  input:checked
+  ~ .singleSellingPlanCtn
+  .sellingPlanBubble {
+  border: 1px solid black;
+}
+
+.sellingPlanLabel:hover
+  + input:not(:checked)
+  ~ .singleSellingPlanCtn
+  .sellingPlanBubble::after {
+  transform: scale(0.5);
+}
+.singleSellingPlanWrapper
+  input:checked
+  ~ .singleSellingPlanCtn
+  .sellingPlanBubble::after {
+  transform: scale(1);
+}
+.sellingPlanSeperator {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  color: #767676;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.sellingPlanSeperator span {
+  background: white;
+  position: relative;
+  padding: 0 5px;
+  z-index: 1;
+}
+
+.sellingPlanSeperator::after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #767676;
+}
+.singleSellingPlanWrapper
+  input:checked
+  ~ .singleSellingPlanCtn
+  .sellingPlanOriginal.otp {
+  color: black;
+}
+.pdpBtn {
+  margin-top: 40px !important;
+  width: 100%;
+  justify-content: center;
+  padding: 15px 0 !important;
+}
+
+.pdpBtn:hover svg {
+  transform: translateX(5px);
+}
+
+.checksCtn {
+  margin-top: 30px;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 0 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.downsellCtn {
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: var(--br);
+  display: flex;
+  align-items: stretch;
+  margin-top: 30px;
+  background: #fcfcfc;
+}
+
+.dRight {
+  position: relative;
+  width: 50%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.downsellImage {
+  height: 100%;
+  object-fit: cover;
+}
+
+.dLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.downsellTitle {
+  font-weight: 400;
+}
+
+.downsellTitle span {
+  font-weight: 600;
+}
+.pdpTab {
+  position: relative;
+  /* height: 50px; */
+  /* overflow: hidden; */
+  padding: 0 20px;
+  border-bottom: 1px solid #eeee;
+}
+
+.pdpTabButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-weight: 600;
+  color: black;
+  margin: 0;
+  font-size: 14px;
+  padding: 0;
+  width: 100%;
+  height: 50px;
+  cursor: pointer;
+}
+
+.pdpTabsCtn {
+  margin-top: 20px;
+}
+
+.pdpTabAnswer {
+  /* padding: 10px 20px; */
+  font-size: 14px;
+}
+.fixedCartNudgeCtn {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 70px) scale(0.8);
+  background: #f5f5f5;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1111;
+  width: 500px;
+  padding: 10px;
+  box-shadow: 4px 4px 16px 0px #0003;
+  transition: transform 0.7s var(--bounce);
+}
+.fixedCartNudgeCtn.active {
+  transform: translate(-50%, 0px) scale(1);
+}
+.cartNudgeTitle {
+  font-size: 24px;
+  font-weight: 400;
+  font-family: var(--noka);
+  text-transform: uppercase;
+  line-height: 1;
+  transform: translateY(2px);
+  margin: 0;
+}
+
+@media screen and (max-width: 1100px) {
+  .pdpDiv {
+    flex-direction: column;
+  }
+  .pdpDiv > * {
+    width: 100% !important;
+  }
+  .pdpLeft {
+    position: relative;
+    top: 0;
+  }
+  .downsellTitle {
+    font-size: 18px;
+  }
+
+  .downsellCtn {
+    padding: 10px;
+  }
+
+  .pdpTab {
+    padding: 0 10px;
+  }
+  .fixedCartNudgeCtn {
+    width: calc(100% - 30px);
+  }
+}

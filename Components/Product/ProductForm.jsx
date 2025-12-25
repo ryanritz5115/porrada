@@ -33,7 +33,7 @@ export default function ProductForm({ product }) {
           sellingPlanId,
         });
         track("Add to cart", {
-          product: product,
+          product_title: product.title,
           page: "/products/" + product.handle,
         });
         setCartStatus(cart?.lines?.nodes?.length > 0 ? "ready" : "empty");

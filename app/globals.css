@@ -31,11 +31,14 @@
   --bounce: cubic-bezier(0.27, 1.61, 0.35, 0.89);
   --expo: cubic-bezier(0.165, 0.84, 0.44, 1);
   --br: 8px;
+  --xsp: 8px;
+  --sp: 16px;
   --p: 40px;
-  --sp: 20px;
-  --lp: 80px;
-  --thin: 1000px;
-  --bw: 1850px;
+  --lp: 60px;
+  --xlp: 80px;
+  --xxlp: 100px;
+  --xxxlp: 160px;
+  --fxlp: 200px;
   --expo: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 @media screen and (max-width: 1100px) {
@@ -72,7 +75,7 @@ main {
   min-height: calc(100dvh - var(--headerHeight));
 }
 svg {
-  shape-rendering: geometricPrecision; /* Forces better vector rendering */
+  shape-rendering: geometricPrecision;
 }
 
 /* Header */
@@ -487,7 +490,65 @@ ul {
   list-style-image: url("https://cdn.shopify.com/s/files/1/0723/7333/8327/files/ListStylePorrada.svg?v=1743464799");
 }
 
-/* Buttons */
+/* --- Utility Classes --- */
+.underlay {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+.hidden {
+  display: none !important;
+}
+.downArrow {
+  position: absolute;
+  z-index: 11;
+  width: 40px;
+  bottom: var(--p);
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+.auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.imageCtn {
+  position: relative;
+  overflow: hidden;
+}
+.flex {
+  display: flex;
+}
+.g-10 {
+  gap: 10px;
+}
+.mini {
+  max-width: var(--mini);
+}
+.smax {
+  max-width: var(--smax);
+}
+.mmax {
+  max-width: var(--mmax);
+}
+.lmax {
+  max-width: var(--lmax);
+}
+.br {
+  border-radius: var(--br);
+  overflow: hidden;
+}
 button:disabled {
   cursor: not-allowed;
 }
@@ -1244,11 +1305,18 @@ span.page.current::after {
   justify-content: center;
   align-items: center;
 }
-
+.quantityLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1;
+  height: 1em;
+}
 .btnLoadingAnimation {
   position: absolute;
   opacity: 0;
   z-index: 0;
+  display: flex;
   transition: opacity 0.3s ease;
 }
 .btnLoadingCtn.isLoading .btnLoadingAnimation {

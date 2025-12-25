@@ -6,6 +6,8 @@ import {
   addLinesToCart,
   getMicroCart,
   getFullCart,
+  updateLineQuantity,
+  updateDiscountCodes,
 } from "@/lib/Shopify/cart";
 
 export async function addProductToCartServer({
@@ -46,8 +48,6 @@ export async function addProductToCartServer({
     path: "/",
     maxAge: 60 * 60 * 24 * 30,
   });
-  // const t1 = performance.now();
-  // console.log(`[cart] server action total: ${(t1 - t0).toFixed(1)}ms`);
 
   return cart;
 }
@@ -74,5 +74,54 @@ export async function getMicroCartAction() {
   }
 
   const cart = await getMicroCart(cartId);
+  return cart;
+}
+export async function updateLineQuantityServer(
+  id,
+  quantity,
+  sellingPlanId = ""
+) {
+  // const t0 = performance.now();
+  const cookieStore = await cookies();
+  const existingCartId = cookieStore.get("cartId")?.value;
+
+  const cart = await updateLineQuantity(existingCartId, [
+    {
+      id,
+      quantity,
+      ...(sellingPlanId && { sellingPlanId }),
+    },
+  ]);
+
+  if (!cart) throw new Error("Cart operation failed");
+
+  cookieStore.set("cartId", cart.id, {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: true,
+    path: "/",
+    maxAge: 60 * 60 * 24 * 30,
+  });
+  // const t1 = performance.now();
+  // console.log(`[cart] server action total: ${(t1 - t0).toFixed(1)}ms`);
+
+  return cart;
+}
+
+export async function updateDiscountCodesServer(cartId, discountCodes = []) {
+  const cookieStore = await cookies();
+
+  const cart = await updateDiscountCodes(cartId, discountCodes);
+
+  if (!cart) throw new Error("Cart operation failed");
+
+  cookieStore.set("cartId", cart.id, {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: true,
+    path: "/",
+    maxAge: 60 * 60 * 24 * 30,
+  });
+
   return cart;
 }

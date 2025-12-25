@@ -7,33 +7,19 @@ import { createContext, useContext, useState, useCallback } from "react";
 const CartContext = createContext(null);
 
 export function CartProvider({ initialCart, initialCartId, children }) {
-  const [summary, setSummary] = useState(initialCart);
-  const [lines, setLines] = useState(null); // null = not loaded yet
-  const [isLoadingLines, setIsLoadingLines] = useState(false);
-
-  const loadFullCart = useCallback(async () => {
-    if (lines || isLoadingLines || !summary?.id) return;
-    setIsLoadingLines(true);
-    try {
-      const cart = await fetchFullCartAction();
-      setLines(cart.lines);
-      setSummary((prev) => ({
-        ...prev,
-        totalQuantity: cart.totalQuantity,
-        subtotal: cart.subtotal,
-      }));
-    } finally {
-      setIsLoadingLines(false);
-    }
-  }, [lines, isLoadingLines, summary?.id]);
+  const [cart, setCart] = useState(initialCart ? initialCart : null);
+  const [cartStatus, setCartStatus] = useState("idle");
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <CartContext.Provider
       value={{
-        summary,
-        lines,
-        isLoadingLines,
-        loadFullCart,
+        cart,
+        setCart,
+        isOpen,
+        setIsOpen,
+        cartStatus,
+        setCartStatus,
       }}
     >
       {children}

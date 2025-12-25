@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect } from "react";
-import Arrow from "../Tiny/Arrow";
+import AddToCart from "./AddToCart";
 
-export default function ProductNudge({ title, isPending }) {
+export default function ProductNudge({ title, isPending, product }) {
   useEffect(() => {
     const cartNudge = document.querySelector(".fixedCartNudgeCtn");
     const pdpBtn = document.querySelector(".pdpBtn");
@@ -31,22 +31,12 @@ export default function ProductNudge({ title, isPending }) {
   return (
     <div className="fixedCartNudgeCtn">
       <p className="cartNudgeTitle">{title}</p>
-      <button
-        disabled={isPending}
-        className="btn nudgeBtn"
-        aria-label="Add to cart"
-        type="submit"
-      >
-        <div className="btnTextCtn">
-          <span>Add to cart</span>
-
-          <span>Add to cart</span>
-        </div>
-        <div className="btnSvgBox">
-          <Arrow />
-          <Arrow />
-        </div>
-      </button>
+      <AddToCart
+        product={product}
+        isPending={isPending}
+        classes="nudgeBtn"
+        text={`Add ${product.title}`}
+      />
     </div>
   );
 }

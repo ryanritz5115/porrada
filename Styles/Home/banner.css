@@ -1,0 +1,23 @@
+.bannerCtn {
+  padding: var(--p);
+}
+
+.bannerDiv {
+  padding: var(--xlp) var(--p);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.bannerInfo {
+  position: relative;
+  z-index: 2;
+  color: white;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bannerInfo > *:not(:last-child) {
+  margin: 0 0 20px;
+}

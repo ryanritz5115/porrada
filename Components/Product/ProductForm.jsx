@@ -1,21 +1,20 @@
 "use client";
 import ProductSelect from "./ProductSelect";
 import ProductNudge from "./ProductNudge";
-import Arrow from "../Tiny/Arrow";
-import { useEffect, useTransition } from "react";
+import { useTransition } from "react";
 import { addProductToCartServer } from "@/app/Shopify/cart/actions";
-import ButtonLoading from "../Tiny/ButtonLoading";
 import { useCart } from "@/Providers/CartProvider";
+import AddToCart from "./AddToCart";
+import { track } from "@vercel/analytics";
 
 export default function ProductForm({ product }) {
   const subscribeAndSaveGroup = product.sellingPlanGroups.edges[0].node;
 
   const [isPending, startTransition] = useTransition();
-  const { setCart } = useCart();
+  const { setCart, setIsOpen, setCartStatus } = useCart();
 
   async function onFormSubmit(e) {
     e.preventDefault();
-    console.log("Starting fetch");
     // const start = performance.now();
     startTransition(async () => {
       const form = e.target;
@@ -27,15 +26,19 @@ export default function ProductForm({ product }) {
           : formData.get("selling_plan");
 
       try {
+        setCartStatus("loading");
         const cart = await addProductToCartServer({
           variantId,
           quantity: 1,
           sellingPlanId,
         });
-
-        setCart({
-          cart,
+        track("Add to cart", {
+          product: product,
+          page: "/products/" + product.handle,
         });
+        setCartStatus(cart?.lines?.nodes?.length > 0 ? "ready" : "empty");
+        setCart(cart);
+        setIsOpen(true);
         // const end = performance.now();
         // const duration = end - start;
         // console.log(`[cart] addToCart (client E2E) ${duration.toFixed(1)}ms`);
@@ -59,25 +62,18 @@ export default function ProductForm({ product }) {
         <option value={product.variants.edges[0].node.id}>Peach Mango</option>
       </select>
       <ProductSelect subscribeAndSaveGroup={subscribeAndSaveGroup} />
+      <AddToCart
+        product={product}
+        isPending={isPending}
+        classes="pdpBtn"
+        text={`Add ${product.title} to cart`}
+      />
 
-      <button
-        className="btn pdpBtn"
-        aria-label="Add Focus to cart"
-        type="submit"
+      <ProductNudge
         disabled={isPending}
-      >
-        <ButtonLoading loading={isPending}>
-          <div className="btnTextCtn">
-            <span>Add {product.title} to cart</span>
-            <span>Add {product.title} to cart</span>
-          </div>
-          <div className="btnSvgBox">
-            <Arrow />
-            <Arrow />
-          </div>
-        </ButtonLoading>
-      </button>
-      <ProductNudge disabled={isPending} title={product.title} />
+        title={product.title}
+        product={product}
+      />
 
       <input type="hidden" name="product-id" value="9061237620951" />
       <input

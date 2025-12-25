@@ -108,7 +108,7 @@ export default function Header() {
             })}
           </ul>
         </nav>
-        <div className="rightNavFlex {% if customer %}extended{% endif %}">
+        <div className="rightNavFlex">
           {/* <a className="headerAccountName" href="/account" aria-label="Account owner name">Hi {{ customer.first_name }}</a> */}
 
           <LoginButton />

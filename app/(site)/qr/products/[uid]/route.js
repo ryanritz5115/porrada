@@ -1,4 +1,4 @@
-import { track } from "@vercel/analytics";
+import { track } from "@vercel/analytics/server";
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic"; // avoid caching surprises on edge/CDN
@@ -10,9 +10,9 @@ export async function GET(req, { params }) {
   const url = new URL(req.url);
   const qs = url.searchParams.toString();
 
-  track("qr-redirect", { uid });
+  await track("qr-redirect", { uid });
 
-  const destinationPath = `/products/${encodeURIComponent(uid)}${qs ? `?${qs}` : ""}`;
+  const destinationPath = `/products/${encodeURIComponent(uid)}${qs ? `?${qs}` : ""}?utm_source=qr_code`;
   const destinationUrl = new URL(destinationPath, url.origin);
 
   // 302 is safest while you may change destinations. You can switch to 308 later.

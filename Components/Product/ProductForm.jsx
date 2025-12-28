@@ -1,17 +1,22 @@
 "use client";
 import ProductSelect from "./ProductSelect";
 import ProductNudge from "./ProductNudge";
-import { useTransition } from "react";
+import { useEffect, useTransition } from "react";
 import { addProductToCartServer } from "@/app/Shopify/cart/actions";
 import { useCart } from "@/Providers/CartProvider";
 import AddToCart from "./AddToCart";
 import { track } from "@vercel/analytics";
+import { PosthogTracking } from "@/lib/Analytics/events";
 
 export default function ProductForm({ product }) {
   const subscribeAndSaveGroup = product.sellingPlanGroups.edges[0].node;
 
   const [isPending, startTransition] = useTransition();
   const { setCart, setIsOpen, setCartStatus } = useCart();
+
+  useEffect(() => {
+    PosthogTracking.productViewed(product);
+  }, []);
 
   async function onFormSubmit(e) {
     e.preventDefault();
@@ -32,13 +37,14 @@ export default function ProductForm({ product }) {
           quantity: 1,
           sellingPlanId,
         });
-        track("Add to cart", {
-          product_title: product.title,
-          page: "/products/" + product.handle,
-        });
+        // track("Add to cart", {
+        //   product_title: product.title,
+        //   page: "/products/" + product.handle,
+        // });
         setCartStatus(cart?.lines?.nodes?.length > 0 ? "ready" : "empty");
         setCart(cart);
         setIsOpen(true);
+        PosthogTracking.addToCart(product, 1, cart);
         // const end = performance.now();
         // const duration = end - start;
         // console.log(`[cart] addToCart (client E2E) ${duration.toFixed(1)}ms`);

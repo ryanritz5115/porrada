@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 
 export default function Button({
@@ -7,6 +8,7 @@ export default function Button({
   link = "",
   target = "_self",
   prefetch = true,
+  onClick = () => {},
 }) {
   return (
     <Link
@@ -15,6 +17,7 @@ export default function Button({
       href={link}
       target={target}
       aria-label={aria || text}
+      onClick={onClick}
     >
       <div className="btnTextCtn">
         <span>{text}</span>

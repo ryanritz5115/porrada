@@ -8,6 +8,7 @@ import PlusIcon from "@/Components/Icons/PlusIcon";
 import Trash from "@/Components/Icons/Trash";
 import Button from "@/Components/Tiny/Button";
 import LoadingElement from "@/Components/Tiny/LoadingElement";
+import { PosthogTracking } from "@/lib/Analytics/events";
 import {
   computeSubtotalFromLines,
   computeTotalsFromLines,
@@ -179,6 +180,9 @@ export default function CartDrawer() {
             classes="drawerCheckout fullWidth blackBorder"
             link={cart.checkoutUrl}
             text="Checkout"
+            onClick={() => {
+              PosthogTracking.checkoutStarted(cart, "sendBeacon");
+            }}
           />
         </div>
       </div>

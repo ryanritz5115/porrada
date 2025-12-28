@@ -137,7 +137,27 @@ export default function CartDrawer() {
             </div>
           </div>
           <div className="cartTotalFlex">
-            <span className="subtotal">Subtotal:</span>
+            <div className="subtotalCtn">
+              <span className="subtotal">Subtotal:</span>
+              {cart?.cost?.totalAmount?.amount !== undefined &&
+                cart?.lines?.nodes?.length > 0 && (
+                  <>
+                    {computeTotalsFromLines(cart.lines.nodes).subtotal !==
+                      computeTotalsFromLines(cart.lines.nodes).total && (
+                      <span
+                        className="discountedPrice"
+                        style={{ display: "block" }}
+                      >
+                        saving $
+                        {(
+                          computeTotalsFromLines(cart.lines.nodes).total -
+                          computeTotalsFromLines(cart.lines.nodes).subtotal
+                        ).toFixed(2)}
+                      </span>
+                    )}
+                  </>
+                )}
+            </div>
             <span className="finalPriceCtn">
               {cart?.cost?.totalAmount?.amount !== undefined &&
                 cart?.lines?.nodes?.length > 0 && (

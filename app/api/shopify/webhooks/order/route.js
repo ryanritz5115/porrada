@@ -1,4 +1,13 @@
 import { posthogServer } from "@/lib/PostHog/posthog-server";
+import crypto from "crypto";
+
+function verifyShopifyWebhook(body, hmac) {
+  const hash = crypto
+    .createHmac("sha256", process.env.SHOPIFY_WEBHOOK_SECRET)
+    .update(body, "utf8")
+    .digest("base64");
+  return hash === hmac;
+}
 
 // app/api/webhooks/shopify/route.ts
 export async function POST(req) {

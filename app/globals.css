@@ -444,8 +444,8 @@ h4,
 h5,
 h6,
 strong {
-  font-weight: 400;
-  font-size: 50px;
+  /* font-weight: 400;
+  font-size: 50px; */
   font-family: var(--eb-garamond);
 }
 input,

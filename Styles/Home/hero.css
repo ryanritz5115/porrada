@@ -1,0 +1,22 @@
+.heroCtn {
+  padding: 0 var(--p) var(--p);
+  height: calc(100vh - var(--hh));
+}
+
+.heroDiv {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  padding: var(--xlp);
+}
+
+.heroInfo {
+  position: relative;
+  z-index: 1;
+  color: white;
+  max-width: 800px;
+}
+.heroInfo > *:not(:last-child) {
+  margin-bottom: var(--p);
+}

@@ -1,20 +1,5 @@
-@font-face {
-  font-family: "Noka";
-  src:
-    url("https://cdn.shopify.com/s/files/1/0723/7333/8327/files/Noka-Bold.otf?v=1729404970")
-      format("opentype"),
-    url("https://cdn.shopify.com/s/files/1/0723/7333/8327/files/Noka-Bold.ttf?v=1729404970")
-      format("truetype"),
-    url("https://cdn.shopify.com/s/files/1/0723/7333/8327/files/Noka-Bold.woff?v=1729404970")
-      format("woff"),
-    url("https://cdn.shopify.com/s/files/1/0723/7333/8327/files/Noka-Bold.woff2?v=1729404970")
-      format("woff2");
-  font-display: swap;
-}
-
 :root {
-  --headerHeight: 70px;
-  --noka: "Noka", "Inter", sans-serif;
+  --hh: 70px;
   --lmax: 1850px;
   --mmax: 1550px;
   --smax: 1250px;
@@ -71,8 +56,8 @@ body.crop {
   overflow: hidden;
 }
 main {
-  margin-top: var(--headerHeight);
-  min-height: calc(100dvh - var(--headerHeight));
+  margin-top: var(--hh);
+  min-height: calc(100dvh - var(--hh));
 }
 svg {
   shape-rendering: geometricPrecision;
@@ -84,7 +69,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  height: var(--headerHeight);
+  height: var(--hh);
   z-index: 1000;
   background: white;
   padding: 0 var(--p);
@@ -93,7 +78,7 @@ header {
     transform 0.5s ease;
 }
 header.tucked {
-  transform: translateY(calc(var(--headerHeight) * -1));
+  transform: translateY(calc(var(--hh) * -1));
 }
 header.forceOpen {
   transform: none !important;
@@ -216,7 +201,7 @@ a.headerAccountName {
 /* Mega Menu */
 ul.megaMenu {
   position: fixed;
-  top: var(--headerHeight);
+  top: var(--hh);
   left: 0;
   width: 100vw;
   padding: 0.5% 2.5% 0 !important;
@@ -284,7 +269,7 @@ p.megaLinkTitle {
   width: 500px;
   background: white;
   border-radius: 10px;
-  top: var(--headerHeight);
+  top: var(--hh);
   box-shadow: 4px 4px 16px 0px #0002;
   visibility: hidden;
   opacity: 0;
@@ -427,10 +412,11 @@ button.search__button.field__button {
 /* Text / Global */
 h1,
 .xl {
-  font-size: 100px;
-  font-weight: 600;
+  font-size: 80px;
+  font-weight: 400;
   line-height: 1em;
   margin: 0;
+  font-family: var(--garamond);
 }
 .l {
   font-size: 70px;
@@ -442,16 +428,15 @@ h2,
 h3,
 h4,
 h5,
-h6,
-strong {
+h6 {
   /* font-weight: 400;
   font-size: 50px; */
-  font-family: var(--eb-garamond);
+  font-family: var(--garamond);
 }
 input,
 textarea,
 select {
-  font-family: "Inter", sans-serif;
+  font-family: var(--inter);
   color: black;
 }
 p {
@@ -461,7 +446,8 @@ p strong {
   font-weight: 600;
 }
 .noka {
-  font-family: var(--noka);
+  font-family: var(--garamond);
+  font-weight: 700;
 }
 .eyebrow {
   font-weight: 600;
@@ -1017,11 +1003,11 @@ span.page.current::after {
     display: block;
     position: fixed;
     width: 100%;
-    height: calc(100dvh - var(--headerHeight));
+    height: calc(100dvh - var(--hh));
     overflow-y: auto;
     background: #ffffff;
     color: white;
-    top: var(--headerHeight);
+    top: var(--hh);
     left: 0;
     z-index: 1000;
     opacity: 0;

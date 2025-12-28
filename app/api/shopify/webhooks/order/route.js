@@ -31,12 +31,12 @@ export async function POST(req) {
     });
 
     if (!verifyShopifyWebhook(body, hmac)) {
-      console.log("❌ Webhook verification failed");
+      console.log("Webhook verification failed");
       return Response.json({ error: "Invalid signature" }, { status: 401 });
     }
 
     if (topic === "orders/paid") {
-      console.log("💰 Capturing purchase event...");
+      console.log("Capturing purchase event...");
 
       const eventData = {
         distinctId:
@@ -55,15 +55,15 @@ export async function POST(req) {
 
       posthogServer.capture(eventData);
 
-      // IMPORTANT: Flush to ensure it sends immediately
-      await posthogServer.flush();
+      // Flush so it sends immediately
+      await posthogServer.shutdown();
 
-      console.log("✅ Event sent to PostHog");
+      console.log("Event sent to PostHog");
     }
 
     return Response.json({ success: true });
   } catch (error) {
-    console.error("❌ Webhook error:", error);
+    console.error("Webhook error:", error);
     return Response.json(
       {
         error: "Internal error",

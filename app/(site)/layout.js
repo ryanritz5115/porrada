@@ -10,20 +10,18 @@ const inter = Inter({
   subsets: ["latin"],
 });
 const garamond = EB_Garamond({
-  variable: "--eb-garamond",
+  variable: "--garamond",
   subsets: ["latin"],
   weight: ["400", "700"],
 });
 
 export default function SiteLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${garamond.variable}`}>
       <body className={`${inter.variable}`}>
         <ServerCartProvider>
           <Header />
-          <main role="main" className={`${garamond.variable}`}>
-            {children}
-          </main>
+          <main role="main">{children}</main>
           <CartDrawer />
         </ServerCartProvider>
         {/* <Analytics /> */}

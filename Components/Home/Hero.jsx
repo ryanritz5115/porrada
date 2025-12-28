@@ -1,25 +1,32 @@
 import { alt, universal } from "@/lib/misc/helpers";
 import Image from "next/image";
 import Button from "../Tiny/Button";
+import "@/Styles/Home/hero.css";
 
 export default function Hero({ slice }) {
   return (
-    <div class="heroCtn">
-      <div class="heroDiv auto mmax imageCtn br">
-        <div class="heroInfo">
-          <h1 class="heroHeader railCtn thin">{slice.title}</h1>
-          <p class="heroDisc fadeUp">{slice.disc}</p>
-          <Button text={slice.link.text} link={slice.link.url} />
+    <div className="heroCtn">
+      <div className="heroDiv auto mmax imageCtn br">
+        <div className="heroInfo">
+          <h1 className="h1">{slice.title}</h1>
+          <p className="heroDisc">{slice.description}</p>
+          <Button
+            text={slice.button.text}
+            link={slice.button.url}
+            target={slice.button.target}
+            classes="white"
+          />
         </div>
         <Image
-          src={slice.image.url}
-          alt={alt(slice.image)}
+          src={"/images/other.png"}
+          alt={"Hero"}
           sizes={universal.fullScreenSizes}
           fill
           className="heroImage"
           preload={true}
           loading="eager"
           fetchPriority="high"
+          style={{ objectFit: "cover" }}
         />
       </div>
     </div>
